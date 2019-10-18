@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Building yet another Blog that Nobody will Read</h1>
+<form action="/newpost" method="post">
+    <table>
+        <tr>
+            <td><label for="newtitle">Tell me your Title!</label></td>
+        </br>
+            <td>
+                <input name="newtitle" type="text">
+            </td>
+
+        </tr>
+    <br>
+    </br>
+  </br>
+        <tr>
+            <td><label for="newpost">What did you Want to Talk about Today?</label></td>
+            <td>
+            </table>
+        </br>
+                    <textarea name='newpost' rows="20" cols="100"></textarea>
+            </td>
+            </tr>
+
+        </br>
+    </br>
+        <input type="submit" value="Ready to Share with the World">
+
+    </form>
+
+
+{% endblock %}

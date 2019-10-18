@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+                .clicky-things {
+                    color: plum;
+                    display: flex;
+                    justify-content: space-between;
+                    padding-right: 1400px;
+                    
+                }
+                .error_message{
+                    color: red;
+                    display: flex;
+                }
+                .heading{
+                    text-align: center;
+                    color:rebeccapurple;
+                }
+        </style>
+    </head>
+<body>
+    <header>
+        <div class="clicky-things">
+                <a href='/'>Main Blog Page</a>
+                <a href='/newpost'>Add New Blog Entry</a>
+        </div>
+
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    <ul>
+    {% for category,message in messages %}
+        <li class="{{category}}">{{message}}</li>
+    {% endfor %}
+    {% endwith %}
+    </ul>
+
+</body>
+</html>
