@@ -2,21 +2,27 @@
 
 {% block content %}
     <div class="heading">
-        <a href='/newpost'>{{myblog.title}}</a>
-    <h1>Blogapalooza </h1>
+        <!-- <a href='/newpost'>{{myblog.title}}</a> -->
+        <h1>Blogapalooza </h1>
     </div>
+        {% if perblog %}
+            <h3>{{perblog.title}}</h3>
+            <hr>
+                <h5>{{perblog.body}}</h5>
+            </hr>
 
-        {% if myblog|length == 0 %}
-          <p>No blogs yet</p>
-        {% else %}
-        <hr>
-            {% for blog in myblog %}
-            <h3><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h3>
+        {%else%}
+            {% if myblog|length == 0 %}
+            <p>No blogs yet</p>
+            {% else %}
+            <hr>
+                {% for blog in myblog %}
+                <h3><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h3>
 
-            <h5>{{blog.body}}</h5>
-        <hr />
-            {% endfor %}
-
+                <h5>{{blog.body}}</h5>
+            <hr />
+                {% endfor %}
+            {% endif %}
         {% endif %}
 
     

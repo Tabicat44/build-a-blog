@@ -27,11 +27,15 @@ class Blog(db.Model):
         self.body = body
         #self.submitted = False
 
-@app.route('/')
+@app.route('/blog')
 def index():
 
+    blog_id = str(request.args.get("id"))
+    this_blog = Blog.query.get(blog_id)
+    
     theblog = Blog.query.all()
-    return render_template('blog.html', myblog=theblog)
+
+    return render_template('blog.html', myblog=theblog, perblog = this_blog)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
@@ -46,15 +50,18 @@ def newpost():
             db.session.add(new_blog)
             db.session.commit()
 
+        
             return redirect('/blog?id=' + str(new_blog.id))
+          
+
     return render_template('newpost.html')
 
-@app.route('/show-blog', methods=['GET'])
-def show_the_blog():
+# @app.route('/show-blog', methods=['GET'])
+# def show_the_blog():
 
-    blog_id = request.args.get('id')
-    new_blog = Blog.query.get(blog_id)
-    return render_template('show-blog.html'.format(new_blog), myblog=new_blog)
+#     blog_id = request.args.get('id')
+#     new_blog = Blog.query.get(blog_id)
+#     return render_template('show-blog.html'.format(new_blog), myblog=new_blog)
         
     # tasks = Task.query.filter_by(completed=False).all()
     # completed_tasks = Task.query.filter_by(completed=True).all()
